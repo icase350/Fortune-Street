@@ -6,6 +6,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
     public StateMachine<GameController> StateMachine { get; private set; }
 
+    private bool drawDebugGUI = false;
+
     private void Start() {
         StateMachine = new StateMachine<GameController>(this);
         StateMachine.ChangeState(BoardMovementState.I);
@@ -13,6 +15,21 @@ public class GameController : MonoBehaviour {
 
     private void Update() {
         StateMachine.Execute();
+
+        if (Input.GetKeyDown(KeyCode.F3))
+            drawDebugGUI = !drawDebugGUI;
+    }
+
+    private void OnGUI() {
+        if(drawDebugGUI) {
+            var style = new GUIStyle();
+            style.fontSize = 36;
+
+            GUILayout.Label("STATE STACK", style);
+            foreach(var state in StateMachine.StateStack) {
+                GUILayout.Label(state.GetType().ToString(), style);
+            }
+        }
     }
 }
 
