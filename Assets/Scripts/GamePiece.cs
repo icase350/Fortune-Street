@@ -15,7 +15,7 @@ public class GamePiece : MonoBehaviour {
         Node closestNode = null;
         foreach (Node node in currentNode.NodeConnections) {
             float dis = Vector3.Distance((node.transform.position - currentNode.transform.position).normalized, inputVec);
-            Debug.Log($"Distance to {node.name}: {dis}");
+            //Debug.Log($"Distance to {node.name}: {dis}");
             if (dis < shortestDis) {
                 shortestDis = dis;
                 closestNode = node;

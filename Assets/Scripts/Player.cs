@@ -5,11 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour {
     private GamePiece piece;
 
-    private void Awake() {
+    public static Player I { get; private set; }
+
+    private void Start() {
+        I = this;
         piece = GetComponent<GamePiece>();
     }
 
-    private void FixedUpdate() {
+    public void HandleUpdate() {
         if (!piece.IsMoving) {
             int x = 0, z = 0;
             if (Input.GetKeyDown(KeyCode.W)) {
