@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuButton : MonoBehaviour
+public class MenuButton : MonoBehaviour, ISelectableItem
 {    
     private Color originalColor;
     private Color originalColorText;
@@ -12,16 +12,23 @@ public class MenuButton : MonoBehaviour
     private Image image;
     private TextMeshProUGUI text;
 
-    private void Start() {
+    public void Init() {
         image = GetComponent<Image>();
         text = GetComponentInChildren<TextMeshProUGUI>();
         originalColor = image.color;
         originalColorText = text.color;
     }
 
+    public void OnSelectionChanged(bool selected) {
+        if (selected)
+            Select();
+        else
+            UnSelect();
+    }
+
     public void Select() {
-        image.color = Color.yellow;
-        text.color = Color.black;
+        image.color = GlobalSettings.I.HighlightColor;
+        text.color = GlobalSettings.I.HighlightTextColor;
     }
 
     public void UnSelect() {

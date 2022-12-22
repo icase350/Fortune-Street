@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour {
 
     private void Start() {
         StateMachine = new StateMachine<GameController>(this);
-        StateMachine.ChangeState(BoardMovementState.I);
+        StateMachine.ChangeState(PlayerMenuState.I);
     }
 
     private void Update() {
