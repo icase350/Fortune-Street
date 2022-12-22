@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMenuState : State<GameController> {
     [SerializeField] PlayerMenuController playerMenu;
-    
+
     public static PlayerMenuState I { get; private set; }
     private void Awake() {
         I = this;
@@ -31,12 +31,20 @@ public class PlayerMenuState : State<GameController> {
 
     void OnMenuItemSelected(int selection) {
         switch (selection) {
-            case 0: // Roll
+            case 0: gc.StateMachine.Push(BoardMovementState.I); break; // Roll
             case 1: // View Board
             case 2: // Sell Stocks
             case 3: // Manage Shops
             case 4: // Other
             default: Debug.Log($"Selected option {selection}"); break;
         }
+    }
+
+    public override void SoftEnter() {
+        playerMenu.gameObject.SetActive(true);
+    }
+
+    public override void SoftExit() {
+        playerMenu.gameObject.SetActive(false);
     }
 }

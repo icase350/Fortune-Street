@@ -15,10 +15,12 @@ namespace GDEUtils.StateMachine {
         }
 
         public void Execute() {
-            CurrentState?.Execute();
+            if (CurrentState != null)
+                CurrentState.Execute();
         }
 
         public void Push(State<T> state) {
+            CurrentState.SoftExit();
             StateStack.Push(state);
             CurrentState = state;
             CurrentState.Enter(owner);
@@ -28,6 +30,7 @@ namespace GDEUtils.StateMachine {
             StateStack.Pop();
             CurrentState.Exit();
             CurrentState = StateStack.Peek();
+            CurrentState.SoftEnter();
         }
 
         public void ChangeState(State<T> state) {

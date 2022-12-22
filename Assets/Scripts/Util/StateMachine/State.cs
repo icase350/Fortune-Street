@@ -9,5 +9,9 @@ namespace GDEUtils.StateMachine {
         public virtual void Execute() { }
 
         public virtual void Exit() { }
+
+        public virtual void SoftEnter() { }
+
+        public virtual void SoftExit() { }
     }
 }
