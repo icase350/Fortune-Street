@@ -6,9 +6,12 @@ using UnityEngine;
 public class GamePiece : MonoBehaviour {
     [SerializeField] private float moveSpeed;
     [SerializeField] private Node currentNode;
+    private List<Node> history = new List<Node>();
+
     public Node CurrentNode => currentNode;
     public Node PreviousNode { get; private set; }
     public bool IsMoving { get; private set; }
+    public int Steps { get; set; }
 
     public void TryMove(Vector3 inputVec) {
         float shortestDis = 0.5f;
@@ -23,6 +26,8 @@ public class GamePiece : MonoBehaviour {
         }
         if (closestNode != null) {
             UpdateNode(closestNode);
+            Steps--;
+            GetComponent<Player>().Die.ChangeValue(Steps);
         }
     }
     

@@ -13,6 +13,7 @@ public class BoardMovementState : State<GameController> {
     GameController gc;
     public override void Enter(GameController owner) {
         gc = owner;
+        Player.I.BeginTurn();
     }
 
     public override void Execute() {

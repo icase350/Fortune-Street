@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
-    public StateMachine<GameController> StateMachine { get; private set; }
-
     private bool drawDebugGUI = false;
 
+    public StateMachine<GameController> StateMachine { get; private set; }
+
+    public static GameController I { get; private set; }
     private void Start() {
+        I = this;
         StateMachine = new StateMachine<GameController>(this);
         StateMachine.ChangeState(PlayerMenuState.I);
     }
@@ -21,12 +23,12 @@ public class GameController : MonoBehaviour {
     }
 
     private void OnGUI() {
-        if(drawDebugGUI) {
+        if (drawDebugGUI) {
             var style = new GUIStyle();
             style.fontSize = 36;
 
             GUILayout.Label("STATE STACK", style);
-            foreach(var state in StateMachine.StateStack) {
+            foreach (var state in StateMachine.StateStack) {
                 GUILayout.Label(state.GetType().ToString(), style);
             }
         }
