@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,11 +45,13 @@ public class Player : MonoBehaviour {
         die.State = DieState.Stopped;
         die.gameObject.SetActive(false);
     }
+
+    public void EndTurn() {
+        throw new NotImplementedException();
+    }
 }
 
-// TODO: Allow player to move about the board but limited by steps
-// Implement history stack to allow player to move backward toward space where turn started
-// When all steps are exhausted, prompt player to confirm stopping space
+// TODO: When all steps are exhausted, prompt player to confirm stopping space
 // Return to PlayerMenuState
 
 public enum TurnPhase {

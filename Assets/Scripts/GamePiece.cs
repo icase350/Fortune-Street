@@ -6,12 +6,13 @@ using UnityEngine;
 public class GamePiece : MonoBehaviour {
     [SerializeField] private float moveSpeed;
     [SerializeField] private Node currentNode;
-    private List<Node> history = new List<Node>();
+    private Stack<Node> history = new Stack<Node>();
 
     public Node CurrentNode => currentNode;
     public Node PreviousNode { get; private set; }
     public bool IsMoving { get; private set; }
     public int Steps { get; set; }
+    public Stack<Node> History => history;
 
     public void TryMove(Vector3 inputVec) {
         float shortestDis = 0.5f;
@@ -25,14 +26,32 @@ public class GamePiece : MonoBehaviour {
             }
         }
         if (closestNode != null) {
-            UpdateNode(closestNode);
-            Steps--;
-            GetComponent<Player>().Die.ChangeValue(Steps);
+            TryMove(closestNode);
         }
     }
-    
+
+    public void TryMove(Node newNode) {
+        if (newNode == PreviousNode && history.Count == 0) {
+            return;
+        } else if (history.Count > 0 && newNode == history.Peek()) {
+            history.Pop();
+            Steps++;
+        } else {
+            history.Push(currentNode);
+            Steps--;
+        }
+
+        if (Steps == 0) {
+            Player.I.Die.gameObject.SetActive(false);
+            Player.I.EndTurn();
+        } else if (Steps > 0) {
+            Player.I.Die.gameObject.SetActive(true);
+            GetComponent<Player>().Die.ChangeValue(Steps);
+        }
+        UpdateNode(newNode);
+    }
+
     void UpdateNode(Node newNode) {
-        PreviousNode = currentNode;
         currentNode = newNode;
         StartCoroutine(Move(currentNode.transform.position));
     }
