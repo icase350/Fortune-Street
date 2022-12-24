@@ -8,12 +8,12 @@ public class Die : MonoBehaviour {
     [SerializeField] private List<Sprite> dieFaces = new List<Sprite>(8);
     [SerializeField] private Image image;
     private float timer = 0f;
-    private readonly float timerSpeed = 10f;
+    private readonly float timerSpeed = 12f;
 
     public int Value { get; private set; }
     public DieState State { get; set; }
 
-    private void Start() {
+    private void Awake() {
         State = DieState.Stopped;
     }
 
@@ -30,12 +30,12 @@ public class Die : MonoBehaviour {
 
     public int StopRolling() {
         State = DieState.Stopped;
+        timer = 0f;
         int result = Random.Range(0, dieFaces.Count) + 1;
         ChangeValue(result);
         return result;
     }
 
-    // TODO: Fix rolling animation
     private void FixedUpdate() {
         if (State == DieState.Rolling) {
             if (timer == 0) {

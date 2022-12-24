@@ -23,4 +23,8 @@ public class BoardMovementState : State<GameController> {
             gc.StateMachine.Pop();
         }
     }
+
+    public override void Exit() {
+        Player.I.Exit();
+    }
 }

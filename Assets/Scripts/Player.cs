@@ -39,6 +39,11 @@ public class Player : MonoBehaviour {
         die.gameObject.SetActive(true);
         die.StartRolling();
     }
+
+    public void Exit() {
+        die.State = DieState.Stopped;
+        die.gameObject.SetActive(false);
+    }
 }
 
 // TODO: Allow player to move about the board but limited by steps
