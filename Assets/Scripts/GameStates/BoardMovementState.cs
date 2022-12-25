@@ -19,7 +19,7 @@ public class BoardMovementState : State<GameController> {
     public override void Execute() {
         Player.I.HandleUpdate();
 
-        if(Input.GetKeyDown(KeyCode.X)) {
+        if(Player.I.Phase == TurnPhase.Rolling && Input.GetButtonDown("Back")) {
             gc.StateMachine.Pop();
         }
     }

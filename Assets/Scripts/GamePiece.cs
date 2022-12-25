@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,7 +44,7 @@ public class GamePiece : MonoBehaviour {
 
         if (Steps == 0) {
             Player.I.Die.gameObject.SetActive(false);
-            Player.I.EndTurn();
+            GameController.I.StateMachine.Push(SpaceConfirmState.I);
         } else if (Steps > 0) {
             Player.I.Die.gameObject.SetActive(true);
             GetComponent<Player>().Die.ChangeValue(Steps);
@@ -70,5 +71,10 @@ public class GamePiece : MonoBehaviour {
 
     bool MoveToNode(Vector3 dest) {
         return dest != (transform.position = Vector3.MoveTowards(transform.position, dest, moveSpeed * Time.deltaTime));
+    }
+
+    internal void EndTurn() {
+        PreviousNode = history.Peek();
+        history.Clear();
     }
 }

@@ -47,12 +47,14 @@ public class Player : MonoBehaviour {
     }
 
     public void EndTurn() {
-        throw new NotImplementedException();
+        piece.EndTurn();
+        GameController.I.StateMachine.Pop();
+    }
+
+    internal void UndoMove() {
+        piece.TryMove(piece.History.Peek());
     }
 }
-
-// TODO: When all steps are exhausted, prompt player to confirm stopping space
-// Return to PlayerMenuState
 
 public enum TurnPhase {
     Rolling, Moving
