@@ -4,10 +4,7 @@ using TMPro;
 using UnityEngine;
 
 public class SuitYourselfIcon : SuitIcon {
-    private TextMeshPro numText;
-    private void Awake() {
-        numText = GetComponentInChildren<TextMeshPro>();
-    }
+    [SerializeField] private TextMeshProUGUI numText;
 
     public int Number { get; private set; }
 

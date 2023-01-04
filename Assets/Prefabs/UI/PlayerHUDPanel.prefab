@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 6573590752115050163}
   - component: {fileID: 6028815363262656019}
   - component: {fileID: 8371639397984727109}
+  - component: {fileID: 1248565185965861568}
   m_Layer: 5
   m_Name: PlayerHUDPanel
   m_TagString: Untagged
@@ -433,6 +434,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1248565185965861568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3400858967568102882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d63d29e38de687459621d010bacdf08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerText: {fileID: 3974700884872792068}
+  cashText: {fileID: 6833113207630021611}
+  netWorthText: {fileID: 5296350952183139462}
+  suitYourself: {fileID: 1907856938562110963}
+  suitList:
+  - {fileID: 6477397655024245860}
+  - {fileID: 4603704159256043176}
+  - {fileID: 5539967035049879108}
+  - {fileID: 4708134062940582805}
 --- !u!1 &3958330279195566275
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +548,7 @@ MonoBehaviour:
   imageComponent: {fileID: 3826021995669252371}
   activeImage: {fileID: 21300000, guid: ed67a06b9490b3248b7d35c04b2749c0, type: 3}
   inactiveImage: {fileID: 21300000, guid: e96ebc049b878c54284b9a7845325791, type: 3}
+  numText: {fileID: 8513577759676095778}
 --- !u!1 &6022216270464440743
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,6 +652,7 @@ GameObject:
   - component: {fileID: 6935319957867458383}
   - component: {fileID: 4371010020142068779}
   - component: {fileID: 8159709786561688110}
+  - component: {fileID: 5296350952183139462}
   m_Layer: 5
   m_Name: NetWorthText
   m_TagString: Untagged
@@ -753,6 +777,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5296350952183139462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6362187485476540490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd3662172279b84095b241a652a4fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  countFPS: 30
+  duration: 1
 --- !u!1 &6415887023790400679
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,6 +1006,7 @@ GameObject:
   - component: {fileID: 9214801160063408859}
   - component: {fileID: 4745821710525011706}
   - component: {fileID: 8384196098857636028}
+  - component: {fileID: 6833113207630021611}
   m_Layer: 5
   m_Name: CashText
   m_TagString: Untagged
@@ -1091,6 +1131,21 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6833113207630021611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323208312732395843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd3662172279b84095b241a652a4fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
+  countFPS: 30
+  duration: 1
 --- !u!1 &8822642293273510598
 GameObject:
   m_ObjectHideFlags: 0

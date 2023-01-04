@@ -5,16 +5,23 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     [SerializeField] private Die die;
+    [SerializeField] private PlayerHUDPanel hudPanel;
     private GamePiece piece;
 
     public Die Die => die;
     public TurnPhase Phase { get; private set; }
     public static Player I { get; private set; }
 
+    public int Cash { get; private set; }
+    public int NetWorth { get; private set; }
+
     private void Start() {
         I = this;
         piece = GetComponent<GamePiece>();
         Phase = TurnPhase.Rolling;
+        Cash = 1000;
+        CalculateNetWorth();
+        hudPanel.Init("P1", 1000, NetWorth);
     }
 
     public void HandleUpdate() {
@@ -53,6 +60,16 @@ public class Player : MonoBehaviour {
 
     internal void UndoMove() {
         piece.TryMove(piece.History.Peek());
+    }
+
+    public void CalculateNetWorth() {
+        int total = 0;
+        // Add total property value
+        // Add total stock value
+        // Add cash
+        total += Cash;
+
+        NetWorth = total;
     }
 }
 
