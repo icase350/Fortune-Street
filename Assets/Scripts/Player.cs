@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
 
     public int Cash { get; private set; }
     public int NetWorth { get; private set; }
+    public int Level { get; private set; }
 
     private void Start() {
         I = this;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour {
         Cash = 1000;
         CalculateNetWorth();
         hudPanel.Init("P1", 1000, NetWorth);
+        Level = 1;
     }
 
     public void HandleUpdate() {
@@ -70,6 +72,19 @@ public class Player : MonoBehaviour {
         total += Cash;
 
         NetWorth = total;
+    }
+
+    public bool GrantSuit(Suit currentSuit) {
+        bool granted = hudPanel.AddSuit(currentSuit);
+        if(!granted) {
+            AdjustCash(100 * Level);
+        }
+        return granted;
+    }
+
+    public void AdjustCash(int amount) {
+        Cash += amount;
+        NetWorth += amount;
     }
 }
 

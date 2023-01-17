@@ -51,7 +51,7 @@ public class PlayerHUDPanel : MonoBehaviour {
             case Suit.Spade: i = 0; break;
             case Suit.Heart: i = 1; break;
             case Suit.Diamond: i = 2; break;
-            case Suit.CLub: i = 3; break;
+            case Suit.Club: i = 3; break;
         }
         bool added = false;
         if (!suitList[i].Active) {
@@ -63,5 +63,5 @@ public class PlayerHUDPanel : MonoBehaviour {
 }
 
 public enum Suit {
-    Spade, Heart, Diamond, CLub
+    Spade, Heart, Diamond, Club
 }
