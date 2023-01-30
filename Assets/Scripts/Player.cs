@@ -61,7 +61,7 @@ public class Player : MonoBehaviour {
     }
 
     internal void UndoMove() {
-        piece.TryMove(piece.History.Peek());
+        StartCoroutine(piece.TryMove(piece.History.Peek()));
     }
 
     public void CalculateNetWorth() {
@@ -80,6 +80,14 @@ public class Player : MonoBehaviour {
             AdjustCash(100 * Level);
         }
         return granted;
+    }
+
+    public void UnGrantSuit(Suit suit, bool granted) {
+        if(granted) {
+            hudPanel.RemoveSuit(suit);
+        } else {
+            AdjustCash(-100 * Level);
+        }
     }
 
     public void AdjustCash(int amount) {

@@ -7,6 +7,8 @@ public class SuitVentureSpace : MonoBehaviour, IBoardSpace {
     [SerializeField] private Suit currentSuit;
     [SerializeField] private bool isRotatingSuit;
 
+    public bool SuitGranted { get; private set; }
+
     public void Land(Player player) {
         // Pick venture card
     }
@@ -18,9 +20,9 @@ public class SuitVentureSpace : MonoBehaviour, IBoardSpace {
          *      if isRotatingSuit
          *          rotate to next suit
          */
-        if(isSuitSpace) {
-            player.GrantSuit(currentSuit);
-            if(isRotatingSuit) {
+        if (isSuitSpace) {
+            SuitGranted = player.GrantSuit(currentSuit);
+            if (isRotatingSuit) {
                 RotateSuit();
             }
         }
@@ -33,5 +35,21 @@ public class SuitVentureSpace : MonoBehaviour, IBoardSpace {
             case Suit.Diamond: currentSuit = Suit.Club; break;
             case Suit.Club: currentSuit = Suit.Spade; break;
         }
+    }
+
+    public void UndoPass(Player player) {
+        if (isSuitSpace) {
+            if (isRotatingSuit) {
+                for (int i = 0; i < 3; i++) {
+                    RotateSuit();
+                }
+            }
+            player.UnGrantSuit(currentSuit, SuitGranted);
+            SuitGranted = false;
+        }
+    }
+
+    public void Refresh() {
+        SuitGranted = false;
     }
 }

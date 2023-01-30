@@ -374,6 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f024d3c0ac1b249b328e2d5f1b19fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameBoard: {fileID: 1639018601}
 --- !u!114 &115017027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,6 +962,11 @@ RectTransform:
   m_AnchoredPosition: {x: -30, y: 30}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 1, y: 0}
+--- !u!1 &787597989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2265852202977580395, guid: 28bc774514194a445ba97817c346bf70, type: 3}
+  m_PrefabInstance: {fileID: 1563917913}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &853827415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1806,6 +1812,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Node (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4472003934900692928, guid: 28bc774514194a445ba97817c346bf70, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3a6656cb8666b5348b148668c59a4806, type: 2}
     - target: {fileID: 7284124673747629103, guid: 28bc774514194a445ba97817c346bf70, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1857,7 +1867,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1099353036338567919, guid: 28bc774514194a445ba97817c346bf70, type: 3}
   m_PrefabInstance: {fileID: 1563917913}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 787597989}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c687174b808e8644081047a47b289fd3, type: 3}
@@ -1868,6 +1878,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7284124673747629103, guid: 28bc774514194a445ba97817c346bf70, type: 3}
   m_PrefabInstance: {fileID: 1563917913}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1563917916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787597989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78aa1f4bcb68aaa4399d8fdad03e1326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSuitSpace: 1
+  currentSuit: 0
+  isRotatingSuit: 1
 --- !u!1001 &1597523137
 PrefabInstance:
   m_ObjectHideFlags: 0

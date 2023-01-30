@@ -31,6 +31,14 @@ public class Shop : MonoBehaviour, IBoardSpace {
     public void Pass(Player player) {
         Debug.Log($"Passed {shopBase.ShopName}");
     }
+
+    public void Refresh() {
+        Debug.Log($"{shopBase.ShopName} has been refreshed");
+    }
+
+    public void UndoPass(Player player) {
+        Debug.Log($"Unpassed {shopBase.ShopName}");
+    }
 }
 
 public enum District {

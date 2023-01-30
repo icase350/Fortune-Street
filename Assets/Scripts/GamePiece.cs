@@ -27,19 +27,21 @@ public class GamePiece : MonoBehaviour {
             }
         }
         if (closestNode != null) {
-            TryMove(closestNode);
+            StartCoroutine(TryMove(closestNode));
         }
     }
 
-    public void TryMove(Node newNode) {
+    public IEnumerator TryMove(Node newNode) {
+        bool movedForward = false;
         if (newNode == PreviousNode && history.Count == 0) {
-            return;
+            yield break;
         } else if (history.Count > 0 && newNode == history.Peek()) {
             history.Pop();
             Steps++;
         } else {
             history.Push(currentNode);
             Steps--;
+            movedForward = true;
         }
 
         if (Steps == 0) {
@@ -49,12 +51,16 @@ public class GamePiece : MonoBehaviour {
             Player.I.Die.gameObject.SetActive(true);
             GetComponent<Player>().Die.ChangeValue(Steps);
         }
-        UpdateNode(newNode);
+        if (!movedForward)
+            currentNode.GetComponent<IBoardSpace>()?.UndoPass(Player.I);
+        yield return UpdateNode(newNode);
+        if (movedForward)
+            currentNode.GetComponent<IBoardSpace>()?.Pass(Player.I);
     }
 
-    void UpdateNode(Node newNode) {
+    IEnumerator UpdateNode(Node newNode) {
         currentNode = newNode;
-        StartCoroutine(Move(currentNode.transform.position));
+        yield return Move(currentNode.transform.position);
     }
 
     IEnumerator Move(Vector3 dest) {

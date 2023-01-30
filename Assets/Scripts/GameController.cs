@@ -1,9 +1,12 @@
 using GDEUtils.StateMachine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
+    [SerializeField] private Transform gameBoard;
+    
     private bool drawDebugGUI = false;
 
     public StateMachine<GameController> StateMachine { get; private set; }
@@ -20,6 +23,10 @@ public class GameController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.F3))
             drawDebugGUI = !drawDebugGUI;
+    }
+
+    public void UpdateBoard() {
+        gameBoard.GetComponentsInChildren<IBoardSpace>().ToList().ForEach(space => space.Refresh());
     }
 
     private void OnGUI() {

@@ -60,6 +60,17 @@ public class PlayerHUDPanel : MonoBehaviour {
         }
         return added;
     }
+
+    public void RemoveSuit(Suit s) {
+        int i = 0;
+        switch (s) {
+            case Suit.Spade: i = 0; break;
+            case Suit.Heart: i = 1; break;
+            case Suit.Diamond: i = 2; break;
+            case Suit.Club: i = 3; break;
+        }
+        suitList[i].TurnOff();
+    }
 }
 
 public enum Suit {
