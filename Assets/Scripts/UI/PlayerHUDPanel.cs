@@ -71,6 +71,11 @@ public class PlayerHUDPanel : MonoBehaviour {
         }
         suitList[i].TurnOff();
     }
+
+    internal void UpdateUI(int cash, int netWorth) {
+        cashText.Value = cash;
+        netWorthText.Value = netWorth;
+    }
 }
 
 public enum Suit {

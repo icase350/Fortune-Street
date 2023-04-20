@@ -57,6 +57,7 @@ public class Player : MonoBehaviour {
 
     public void EndTurn() {
         piece.EndTurn();
+        piece.CurrentNode.GetComponent<IBoardSpace>()?.Land(this);
         GameController.I.StateMachine.Pop();
     }
 
@@ -93,6 +94,11 @@ public class Player : MonoBehaviour {
     public void AdjustCash(int amount) {
         Cash += amount;
         NetWorth += amount;
+        UpdateUI();
+    }
+
+    private void UpdateUI() {
+        hudPanel.UpdateUI(Cash, NetWorth);
     }
 }
 
