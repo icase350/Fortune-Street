@@ -8,6 +8,7 @@ public class Shop : MonoBehaviour, IBoardSpace {
 
     public Player Owner { get; private set; }
     public District District => district;
+    public string Name => shopBase.ShopName;
     public int Value { get; private set; }
     public int Price { get; private set; }
     public int MaxCapital { get; private set; }
@@ -41,7 +42,7 @@ public class Shop : MonoBehaviour, IBoardSpace {
     }
 
     public void Pass(Player player) {
-        Debug.Log($"Passed {shopBase.ShopName}");
+        Debug.Log($"Passed {Name}");
     }
 
     public void Refresh() {
@@ -69,6 +70,10 @@ public class Shop : MonoBehaviour, IBoardSpace {
 
     private int TotalValue() {
         return Value + (InvestedCapital > MaxCapital ? MaxCapital : InvestedCapital);
+    }
+
+    public int GetRemainingCapital() {
+        return Mathf.Clamp(MaxCapital - InvestedCapital, 0, MaxCapital);
     }
 }
 

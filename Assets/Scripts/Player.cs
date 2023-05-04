@@ -100,6 +100,10 @@ public class Player : MonoBehaviour {
     private void UpdateUI() {
         hudPanel.UpdateUI(Cash, NetWorth);
     }
+
+    internal IBoardSpace GetCurrentSpace() {
+        return piece.CurrentNode.GetComponent<IBoardSpace>();
+    }
 }
 
 public enum TurnPhase {

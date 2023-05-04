@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SpaceConfirmState : State<GameController> {
     [SerializeField] private SpaceConfirmController confirmMenu;
+    [SerializeField] private ShopInfoPanel shopInfoPanel;
 
     public static SpaceConfirmState I { get; private set; }
     private void Awake() {
@@ -16,6 +17,12 @@ public class SpaceConfirmState : State<GameController> {
         gc = owner;
         confirmMenu.gameObject.SetActive(true);
         confirmMenu.OnSelected += OnMenuItemSelected;
+
+        var curSpace = Player.I.GetCurrentSpace();
+        if (curSpace is Shop) {
+            shopInfoPanel.Init(curSpace as Shop);
+            shopInfoPanel.gameObject.SetActive(true);
+        }
     }
 
     public override void Execute() {
@@ -28,6 +35,8 @@ public class SpaceConfirmState : State<GameController> {
     public override void Exit() {
         confirmMenu.gameObject.SetActive(false);
         confirmMenu.OnSelected -= OnMenuItemSelected;
+
+        shopInfoPanel.gameObject.SetActive(false);
     }
 
     void OnMenuItemSelected(int selection) {

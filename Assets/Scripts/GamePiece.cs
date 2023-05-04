@@ -44,18 +44,19 @@ public class GamePiece : MonoBehaviour {
             movedForward = true;
         }
 
-        if (Steps == 0) {
-            Player.I.Die.gameObject.SetActive(false);
-            GameController.I.StateMachine.Push(SpaceConfirmState.I);
-        } else if (Steps > 0) {
-            Player.I.Die.gameObject.SetActive(true);
-            GetComponent<Player>().Die.ChangeValue(Steps);
-        }
         if (!movedForward)
             currentNode.GetComponent<IBoardSpace>()?.UndoPass(Player.I);
         yield return UpdateNode(newNode);
         if (movedForward)
             currentNode.GetComponent<IBoardSpace>()?.Pass(Player.I);
+
+        if (Steps == 0) {
+            Player.I.Die.gameObject.SetActive(false);
+            yield return GameController.I.StateMachine.PushAndWait(SpaceConfirmState.I);
+        } else if (Steps > 0) {
+            Player.I.Die.gameObject.SetActive(true);
+            GetComponent<Player>().Die.ChangeValue(Steps);
+        }
     }
 
     IEnumerator UpdateNode(Node newNode) {
