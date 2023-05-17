@@ -343,10 +343,11 @@ GameObject:
   m_Component:
   - component: {fileID: 115017024}
   - component: {fileID: 115017026}
+  - component: {fileID: 115017028}
   - component: {fileID: 115017025}
   - component: {fileID: 115017027}
-  - component: {fileID: 115017028}
   - component: {fileID: 115017029}
+  - component: {fileID: 115017030}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -421,7 +422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightColor: {r: 1, g: 0.7529412, b: 0, a: 1}
   highlightTextColor: {r: 0, g: 0, b: 0, a: 1}
-  starThresholds: fa000000f4010000ee020000e8030000dc050000
+  starThresholds: fa000000f4010000ee020000e8030000dc050000d0070000
 --- !u!114 &115017029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +437,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   confirmMenu: {fileID: 1663141740}
   shopInfoPanel: {fileID: 1014951732}
+--- !u!114 &115017030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115017022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b20bf4652779b4c8ea90684964bc81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &149291217
 PrefabInstance:
   m_ObjectHideFlags: 0

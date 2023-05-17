@@ -6,7 +6,7 @@ public class Shop : MonoBehaviour, IBoardSpace {
     [SerializeField] private ShopBase shopBase;
     [SerializeField] private District district;
 
-    public Player Owner { get; private set; }
+    public Player Owner { get; set; }
     public District District => district;
     public string Name => shopBase.ShopName;
     public int Value { get; private set; }
@@ -27,18 +27,9 @@ public class Shop : MonoBehaviour, IBoardSpace {
     }
 
     public void Land(Player player) {
-        if (Owner == null) {
-            //TODO: prompt to buy
-            player.AdjustCash(-Value);
-            Owner = player;
-        } else if (Owner == player) {
-            //TODO: prompt to invest
-        } else {
-            player.AdjustCash(-Price);
-            if (player.Cash > TotalValue() * 5) {
-                //TODO: prompt to force buyout
-            }
-        }
+        ShopManagementState.Instance.Player = player;
+        ShopManagementState.Instance.Shop = this;
+        GameController.I.StateMachine.Push(ShopManagementState.Instance);
     }
 
     public void Pass(Player player) {
@@ -68,7 +59,7 @@ public class Shop : MonoBehaviour, IBoardSpace {
             return index + 2;
     }
 
-    private int TotalValue() {
+    public int TotalValue() {
         return Value + (InvestedCapital > MaxCapital ? MaxCapital : InvestedCapital);
     }
 
